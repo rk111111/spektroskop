@@ -16,6 +16,10 @@ int main(int argc, char* argv[])
 
     //SDL_Window *w=SDL_CreateWindow("tescik",100,100,300,300,0);
     spk::Window w;
+    spk::Rectangle rect;
+    rect.setColor({0xFF,0,0,0xFF});
+    rect.setRelativeViewPort({25.0,25.0,50.0,50.0});
+    w.push_back((spk::FrameBase*)(&rect));
     w.CreateWindow("tescik",100,100,300,300,SDL_WINDOW_RESIZABLE);
 
     spk::EventVector ev;

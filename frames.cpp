@@ -1,6 +1,7 @@
 #include "frames.hpp"
 
-#define DEBUG
+//#define DEBUG
+#define DEBUG2
 
 namespace spk
 {
@@ -268,4 +269,26 @@ namespace spk
         }
         return success||Frame::checkEvent(e);
     }
+
+    //////////////////////////////////////////////////
+    // Rectangle
+
+    bool Rectangle::setColor(SDL_Color color)
+    {
+        c=color;
+        return true;
+    }
+    bool Rectangle::render()
+    {
+        FrameBase::render();
+        #ifdef DEBUG2
+        std::cout<<"x="<<viewPortPos.x<<" y="<<viewPortPos.y<<" w="<<viewPortPos.w<<" h="<<viewPortPos.h<<std::endl;
+        #endif // DEBUG
+        //std::cout<<"a";
+        SDL_RenderSetViewport(FrameBase::renderer,&viewPortPos);
+        SDL_SetRenderDrawColor(FrameBase::renderer,c.r,c.g,c.b,c.a);
+        SDL_RenderFillRect(FrameBase::renderer,&viewPortPos);
+        return true;
+    }
+
 }

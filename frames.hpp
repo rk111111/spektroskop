@@ -53,6 +53,7 @@ namespace spk
 
     /**
         This class will be used to hold frame and all its child-frames
+        (By the way, I am not certain if dividing FrameBase and Frame into two different classes was good idea.)
     */
     class Frame:
         /// This will be used to hold frame
@@ -105,6 +106,14 @@ namespace spk
         /// It takes care about window resize event and calls recursively methods to take care about other events.
         virtual bool checkEvent(const SDL_Event* e);
 
+    };
+
+    class Rectangle: public FrameBase
+    {
+        SDL_Color c;
+    public:
+        bool setColor(SDL_Color color);
+        bool render();
     };
 }
 
