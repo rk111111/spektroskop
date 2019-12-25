@@ -5,11 +5,12 @@ namespace spk
     //////////////////////////////////////////////////
     // EventBase
 
+    /// Default constructor. It just is.
     EventBase::EventBase()
     {
 
     }
-
+    /// This is virtual function. It does nothing, but child classes may use it to operate on events.
     bool EventBase::checkEvent(const SDL_Event *e)
     {
         return false;
@@ -18,17 +19,17 @@ namespace spk
     //////////////////////////////////////////////////
     // EventQuit
 
+    /// Constructor require pointer to bool variable hold the main loop.
     EventQuit::EventQuit(bool* runningFlag):EventBase()
     {
         running=runningFlag;
     }
+    /// If the user clicked on X button the running variable will be set to false, so the main loop should be broken.
     bool EventQuit::checkEvent(const SDL_Event* e)
     {
-        //cout<<"Event quit checks event"<<endl;
         if(e->type==SDL_QUIT)
         {
-            cout<<"The program will be closed"<<endl;
-            *running=0;
+            *running=false;
             return true;
         }
         return false;
@@ -37,14 +38,14 @@ namespace spk
     //////////////////////////////////////////////////
     // EventVector
 
+    /// Default constructor - it does nothing.
     EventVector::EventVector()
     {
 
     }
-
+    /// It calls all pointed objects to deal with current event. It returns true if any object succeeded.
     bool EventVector::checkEvent(const SDL_Event *e)
     {
-        //cout<<"Event type "<<e->type<<endl;
         bool succec=false;
         for(vector<EventBase*>::iterator it=begin();it<end();it++)
         {

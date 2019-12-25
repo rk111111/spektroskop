@@ -24,10 +24,9 @@ int main(int argc, char* argv[])
     SDL_Event e;
     while(running)
     {
-        //std::cout<<"runnung="<<(int)running<<endl;
         while(SDL_PollEvent(&e))
         {
-            std::cout<<e.type<<endl;
+            //std::cout<<e.type<<endl;
             ev.checkEvent(&e);
         }
     }
