@@ -33,7 +33,7 @@ namespace spk
         SDL_Renderer *renderer;
         /// relative viewPort position
         relPosRect relViewPortPos;
-        /// coordinates of viewPort which will be uses to rendering
+        /// coordinates of viewPort which will be used to rendering
         SDL_Rect viewPortPos;
 
     public:
@@ -47,10 +47,12 @@ namespace spk
         virtual bool setRelativeViewPort(relPosRect relViewPortPosition, SDL_Rect highterViewPort);
         /// It evaluates new view port coordinates, basing on the new parent frame and relative view port coordinates.
         virtual bool setViewPortPos(SDL_Rect highterViewPort);
+        /// It is base of rendering method. It does nothing.
+        virtual bool render();
     };
 
     /**
-        This class will be used to hold frame and all its child-frames/
+        This class will be used to hold frame and all its child-frames
     */
     class Frame:
         /// This will be used to hold frame
@@ -72,6 +74,10 @@ namespace spk
         virtual bool setRelativeViewPort(relPosRect relViewPortPosition, SDL_Rect highterViewPort);
         /// It evaluates new view port coordinates, basing on the new parent frame and relative view port coordinates, and it do so recursively with child-frames.
         virtual bool setViewPortPos(SDL_Rect highterViewPort);
+        /// It clears render space and calls render() method for all child-frames.
+        virtual bool render();
+        /// It calls render() method for all child-frames.
+        virtual bool renderRecursivly();
     };
 
     /**
@@ -94,6 +100,11 @@ namespace spk
         bool CreateWindow(const char* title, int x, int y, int w, int h,Uint32 flags);
         /// It destroys window and renderer but do not destroys kept frames! You must take care about them yourself! You created them without Window help!
         ~Window();
+        /// It clears background, calls recursively rendering functions of child-frames and updates screen.
+        virtual bool render();
+        /// It takes care about window resize event and calls recursively methods to take care about other events.
+        virtual bool checkEvent(const SDL_Event* e);
+
     };
 }
 

@@ -5,7 +5,7 @@
 //#include <SDL2/SDL_mixer.h>
 
 //#include "eventList.hpp"
-#include "eventVector.hpp"
+#include "frames.hpp"
 #include <thread>
 
 using namespace std;
@@ -14,12 +14,15 @@ int main(int argc, char* argv[])
 {
     SDL_Init(SDL_INIT_EVERYTHING);
 
-    SDL_Window *w=SDL_CreateWindow("tescik",100,100,300,300,0);
+    //SDL_Window *w=SDL_CreateWindow("tescik",100,100,300,300,0);
+    spk::Window w;
+    w.CreateWindow("tescik",100,100,300,300,SDL_WINDOW_RESIZABLE);
 
     spk::EventVector ev;
     bool running=true;
     spk::EventQuit qt(&running);
     ev.push_back((spk::EventBase*)(&qt));
+    ev.push_back((spk::EventBase*)(&w));
 
     SDL_Event e;
     while(running)
@@ -29,9 +32,13 @@ int main(int argc, char* argv[])
             //std::cout<<e.type<<endl;
             ev.checkEvent(&e);
         }
-    }
+        //cout<<"1";
+        w.render();
 
-    SDL_DestroyWindow(w);
+    }
+    ev.clear();
+    w.DestroyWindow();
+    //SDL_DestroyWindow(w);
     SDL_Quit();
     cout << "Hello world!" << endl;
     return 0;
