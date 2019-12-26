@@ -13,7 +13,7 @@ using namespace std;
 int main(int argc, char* argv[])
 {
     SDL_Init(SDL_INIT_EVERYTHING);
-
+    /*
     //SDL_Window *w=SDL_CreateWindow("tescik",100,100,300,300,0);
     spk::Window w;
     spk::Rectangle rect;
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
     ev.clear();
     w.DestroyWindow();
     //SDL_DestroyWindow(w);
-
+    */
     SDL_Quit();
     cout << "Hello world!" << endl;
     return 0;
