@@ -19,8 +19,10 @@ int main(int argc, char* argv[])
     spk::Rectangle rect;
     rect.setColor({0xFF,0,0,0xFF});
     rect.setRelativeViewPort({25.0,25.0,50.0,50.0});
-    w.push_back((spk::FrameBase*)(&rect));
+
     w.CreateWindow("tescik",100,100,300,300,SDL_WINDOW_RESIZABLE);
+    w.push_back((spk::FrameBase*)(&rect));
+
 
     spk::EventVector ev;
     bool running=true;
@@ -43,6 +45,7 @@ int main(int argc, char* argv[])
     ev.clear();
     w.DestroyWindow();
     //SDL_DestroyWindow(w);
+
     SDL_Quit();
     cout << "Hello world!" << endl;
     return 0;

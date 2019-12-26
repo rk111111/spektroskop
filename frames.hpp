@@ -12,12 +12,17 @@ namespace spk
     public:
         bool correctPos();
     } relPosRect;
+    typedef struct windowSize
+    {
+        int x;
+        int y;
+    }windowSize;
 }
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include <SDL2/SDL_ttf.h>
-#include <SDL2/SDL_mixer.h>
+//#include <SDL2/SDL_ttf.h>
+//#include <SDL2/SDL_mixer.h>
 #include <vector>
 #include "eventVector.hpp"
 
@@ -35,18 +40,34 @@ namespace spk
         relPosRect relViewPortPos;
         /// coordinates of viewPort which will be used to rendering
         SDL_Rect viewPortPos;
+        ///
+        SDL_Color clearColor;
+        /// Size of the window
+        windowSize ws;
 
+        virtual bool setOnlyRelativeViewPort(relPosRect newRelViewPortPos);
     public:
         /// It sets default values.
         FrameBase();
         /// It sets renderer.
         virtual bool setRenderer(SDL_Renderer* r);
+
+        virtual bool setRelativeViewPort(relPosRect newRelViewPortPos);
+        virtual bool setViewPortPos(SDL_Rect highterViewPort);
+        virtual bool setWindowSize(windowSize winSiz);
+        virtual bool setViewPort(relPosRect newRelViewPortPos, SDL_Rect highterViewPort);
+        virtual bool setViewPortAndWindow(relPosRect newRelViewPortPos, SDL_Rect highterViewPort, windowSize winSiz);
+        virtual bool setViewPortPosAndWindow(SDL_Rect highterViewPort, windowSize winSiz);
+        /*
         /// It sets relative viewport and assumes that parent frame is empty.
         virtual bool setRelativeViewPort(relPosRect relViewPortPosition);
         /// It sets relative viewport and evaluates new viewport
         virtual bool setRelativeViewPort(relPosRect relViewPortPosition, SDL_Rect highterViewPort);
         /// It evaluates new view port coordinates, basing on the new parent frame and relative view port coordinates.
         virtual bool setViewPortPos(SDL_Rect highterViewPort);
+        ///
+        virtual bool setWindowSize(windowSize winSiz);
+        */
         /// It is base of rendering method. It does nothing.
         virtual bool render();
     };
@@ -69,12 +90,29 @@ namespace spk
         virtual bool checkEvent(const SDL_Event* e);
         /// It copies the pointer to the renderer and do so recursively with child-frames.
         virtual bool setRenderer(SDL_Renderer* r);
+
+
+        virtual bool setRelativeViewPort(relPosRect newRelViewPortPos);
+        virtual bool setViewPortPos(SDL_Rect highterViewPort);
+        virtual bool setWindowSize(windowSize winSiz);
+        virtual bool setViewPort(relPosRect newRelViewPortPos, SDL_Rect highterViewPort);
+        //virtual bool setViewPortAndWindow(relPosRect newRelViewPortPos, SDL_Rect highterViewPort, windowSize winSiz);
+        virtual bool setViewPortPosAndWindow(SDL_Rect highterViewPort, windowSize winSiz);
+
+        virtual bool setRecursivlyViewPortPos();
+        virtual bool setRecursivlyWindowSize();
+        virtual bool setRecursivlyViewPortPosAndWindowSize();
+
+        virtual void push_back(FrameBase* pointer);
+
+        /*
         /// It sets relative viewport and assumes that parent frame is empty.
         virtual bool setRelativeViewPort(relPosRect relViewPortPosition);
         /// It sets relative viewport and evaluates new viewport
         virtual bool setRelativeViewPort(relPosRect relViewPortPosition, SDL_Rect highterViewPort);
         /// It evaluates new view port coordinates, basing on the new parent frame and relative view port coordinates, and it do so recursively with child-frames.
         virtual bool setViewPortPos(SDL_Rect highterViewPort);
+        */
         /// It clears render space and calls render() method for all child-frames.
         virtual bool render();
         /// It calls render() method for all child-frames.
@@ -101,10 +139,13 @@ namespace spk
         bool CreateWindow(const char* title, int x, int y, int w, int h,Uint32 flags);
         /// It destroys window and renderer but do not destroys kept frames! You must take care about them yourself! You created them without Window help!
         ~Window();
+
+
         /// It clears background, calls recursively rendering functions of child-frames and updates screen.
         virtual bool render();
         /// It takes care about window resize event and calls recursively methods to take care about other events.
         virtual bool checkEvent(const SDL_Event* e);
+
 
     };
 
