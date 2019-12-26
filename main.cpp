@@ -5,7 +5,7 @@
 //#include <SDL2/SDL_mixer.h>
 
 //#include "eventList.hpp"
-#include "frames.hpp"
+#include "window.hpp"
 #include <thread>
 
 using namespace std;

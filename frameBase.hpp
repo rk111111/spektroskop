@@ -64,43 +64,6 @@ namespace spk
         virtual bool clearRenderer();
     };
 
-    class Frame: public FrameBase, protected std::vector<FrameBase*>
-    {
-    protected:
-
-    public:
-        Frame();
-        virtual bool setWindow(SDL_Window* w);
-        virtual bool setWindowRecursively();
-        virtual bool setParentViewPort(SDL_Rect* parentViewPortPoiter);
-        virtual bool setParentViewPortRecursively();
-        virtual void push_back(FrameBase* pointer);
-        virtual bool remove(FrameBase* pointer);
-        virtual void pop_back();
-        virtual void clear();
-
-        virtual bool render();
-        virtual bool renderRecursively();
-        virtual bool checkEvent(const SDL_Event *e);
-        virtual bool checkEventRecursively(const SDL_Event *e);
-    };
-
-    class Window: public Frame
-    {
-    protected:
-
-    public:
-        Window();
-        virtual bool DestroyWindow();
-        virtual bool setViewPort();
-        virtual void clear();
-        virtual bool CreateWindow(const char* title, int x, int y, int w, int h,Uint32 flags);
-
-        ~Window();
-
-        virtual bool render();
-        virtual bool checkEvent(const SDL_Event *e);
-    };
 
 }
 
