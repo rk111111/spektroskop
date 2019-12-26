@@ -32,6 +32,10 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="eventVector.cpp" />
+		<Unit filename="eventVector.hpp" />
+		<Unit filename="frames.cpp" />
+		<Unit filename="frames.hpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
