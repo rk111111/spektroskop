@@ -27,8 +27,8 @@ namespace spk
 
         virtual bool render();
         virtual bool renderRecursively();
-        virtual bool checkEvent(const SDL_Event *e);
-        virtual bool checkEventRecursively(const SDL_Event *e);
+        //virtual bool checkEvent(const SDL_Event *e);
+        //virtual bool checkEventRecursively(const SDL_Event *e);
     };
 }
 

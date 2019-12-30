@@ -96,6 +96,7 @@ namespace spk
         }
         return success;
     }
+    /*
     bool Frame::checkEvent(const SDL_Event *e)
     {
         return checkEventRecursively(e);
@@ -109,6 +110,7 @@ namespace spk
         }
         return success;
     }
+    */
 }
 
 

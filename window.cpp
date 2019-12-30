@@ -86,7 +86,7 @@ namespace spk
             success=Frame::setWindow(window);
             success=Window::setViewPort() && success;
         }
-        success = Frame::checkEvent(e) || success;
+        //success = Frame::checkEvent(e) || success;
         return success;
     }
 
