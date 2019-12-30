@@ -11,7 +11,10 @@ namespace spk
     }
     bool Frame::setWindow(SDL_Window* w)
     {
-        return FrameBase::setWindow(w) && Frame::setWindowRecursively();
+        bool success=true;
+        success= FrameBase::setWindow(w) && success;
+        success= Frame::setWindowRecursively() && success;
+        return success;
     }
 
     bool Frame::setWindowRecursively()
@@ -19,21 +22,24 @@ namespace spk
         bool success=true;
         for(vecPoitFrameBase::iterator it=vecPoitFrameBase::begin(); it<vecPoitFrameBase::end();it++)
         {
-            success=success && it[0]->setWindow(window);
+            success= it[0]->setWindow(window) && success;
         }
         return success;
     }
 
     bool Frame::setParentViewPort(SDL_Rect* parentViewPortPoiter)
     {
-        return FrameBase::setParentViewPort(parentViewPortPoiter) && Frame::setParentViewPortRecursively();
+        bool success=true;
+        success= FrameBase::setParentViewPort(parentViewPortPoiter) && success;
+        success= Frame::setParentViewPortRecursively() && success;
+        return success;
     }
     bool Frame::setParentViewPortRecursively()
     {
         bool success=true;
         for(vecPoitFrameBase::iterator it=vecPoitFrameBase::begin(); it<vecPoitFrameBase::end();it++)
         {
-            success=success && it[0]->setParentViewPort(&viewPort);
+            success=it[0]->setParentViewPort(&viewPort) && success;
         }
         return success;
     }
@@ -76,14 +82,17 @@ namespace spk
 
     bool Frame::render()
     {
-        return clearRenderer() && renderRecursively();
+        bool success=true;
+        success= clearRenderer() && success;
+        success= renderRecursively() && success;
+        return success;
     }
     bool Frame::renderRecursively()
     {
         bool success=true;
         for(vecPoitFrameBase::iterator it=vecPoitFrameBase::begin(); it<vecPoitFrameBase::end();it++)
         {
-            success=success && it[0]->render();
+            success= it[0]->render() && success;
         }
         return success;
     }
@@ -96,8 +105,21 @@ namespace spk
         bool success=false;
         for(vecPoitFrameBase::iterator it=vecPoitFrameBase::begin(); it<vecPoitFrameBase::end();it++)
         {
-            success=success||it[0]->checkEvent(e);
+            success=it[0]->checkEvent(e) || success;
         }
         return success;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

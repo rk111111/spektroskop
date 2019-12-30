@@ -36,8 +36,8 @@
 		<Unit filename="eventVector.hpp" />
 		<Unit filename="frame.cpp" />
 		<Unit filename="frame.hpp" />
-		<Unit filename="frames.cpp" />
-		<Unit filename="frames.hpp" />
+		<Unit filename="frameBase.cpp" />
+		<Unit filename="frameBase.hpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="window.cpp" />
 		<Unit filename="window.hpp" />

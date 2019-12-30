@@ -90,7 +90,10 @@ namespace spk
     bool FrameBase::setRelativeViewPort(myTypeRectangle pattern)
     {
         relViewPort=pattern;
-        return relViewPort.correctPos();
+        bool success=true;
+        success= relViewPort.correctPos() && success;
+        success= evaluateViewPort() && success;
+        return success;
     }
     bool FrameBase::setClearColor(SDL_Color c)
     {

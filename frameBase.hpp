@@ -33,11 +33,17 @@ namespace spk
 
 #include "eventVector.hpp"
 
+//#define DEBUG
+
 namespace spk
 {
     class FrameBase: public EventBase
     {
+        #ifdef DEBUG
+    public:
+        #else
     protected:
+        #endif // DEBUG
     /// Depends on the window. Those parameters can be evaluated basing on the SDL_Window pointer, but I hope that remembering them might be easier and faster.
         SDL_Window* window;
         SDL_Renderer* renderer;
