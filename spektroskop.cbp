@@ -32,13 +32,19 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="button.cpp" />
+		<Unit filename="button.hpp" />
 		<Unit filename="eventVector.cpp" />
 		<Unit filename="eventVector.hpp" />
+		<Unit filename="font.cpp" />
+		<Unit filename="font.hpp" />
 		<Unit filename="frame.cpp" />
 		<Unit filename="frame.hpp" />
 		<Unit filename="frameBase.cpp" />
 		<Unit filename="frameBase.hpp" />
 		<Unit filename="main.cpp" />
+		<Unit filename="textFrame.cpp" />
+		<Unit filename="textFrame.hpp" />
 		<Unit filename="window.cpp" />
 		<Unit filename="window.hpp" />
 		<Extensions>

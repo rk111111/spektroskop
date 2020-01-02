@@ -170,9 +170,4 @@ namespace spk
         target->h=viewPort->h*base->h/100.0;
         return true;
     }
-
-
-
-
-
 }

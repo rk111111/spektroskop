@@ -28,7 +28,7 @@ namespace spk
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-//#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_ttf.h>
 //#include <SDL2/SDL_mixer.h>
 
 #include "eventVector.hpp"
@@ -58,15 +58,24 @@ namespace spk
         myTypeRectangle relViewPort;
         SDL_Color clearColor;
     public:
+        /// The constructor. It sets default values.
         FrameBase();
+        /// It evaluates parameters depending on the window pointer.
         virtual bool getWindowParam();
+        /// It sets window pointer and calls getWindowParam()
         virtual bool setWindow(SDL_Window* w);
+        /// It sets the part of screen which will drawn to. Values are expressed as a percentage. It calls evaluateViewPort().
         virtual bool setRelativeViewPort(myTypeRectangle pattern);
+        /// It sets the color of the background.
         virtual bool setClearColor(SDL_Color c);
+        /// It sets pointer to part of the screen of parent frame. It calls evaluateViewPort().
         virtual bool setParentViewPort(SDL_Rect* parentViewPortPoiter);
+        /// It evaluates view port basing on the relViewPort and parentViewPort
         virtual bool evaluateViewPort();
 
+        /// It only calls clearRenderer() but it is used by ?inheritance? classes.
         virtual bool render();
+        /// It sets clearColor to the background of part of the screen marked by viewPort.
         virtual bool clearRenderer();
     };
 
