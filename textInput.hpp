@@ -3,7 +3,7 @@
 
 #include "textFrame.hpp"
 
-namespace std;
+using namespace std;
 
 namespace spk
 {

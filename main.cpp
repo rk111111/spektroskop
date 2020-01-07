@@ -53,7 +53,7 @@ int main(int argc, char* argv[])
     tekscik.setRelativeViewPort({5,30,90,15});
     tekscik.setClearColor({0,0,0xFF,0xFF});
     tekscik.setTextColor({0,0xFF,0,0xFF});
-    tekscik.setText("hihi");
+    tekscik.setText("to jest przykladowy tekst");
 
     win.push_back((spk::FrameBase*)&tekscik);
 
@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
     buton.setRelativeViewPort({5,5,90,15});
     //buton.setClearColor({0,0,0xFF,0xFF});
     //tekscik.setTextColor({0,0xFF,0,0xFF});
-    buton.setText("przycisk");
+    buton.setText("tak moze wygladac przycisk");
 
     win.push_back((spk::FrameBase*)&buton);
     ev.push_back((spk::EventBase*)&buton);

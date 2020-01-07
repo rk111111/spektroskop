@@ -1,6 +1,6 @@
 #include "textInput.hpp"
 
-namespace std;
+using namespace std;
 
 namespace spk
 {
